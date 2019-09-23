@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<canvas id="myCanvas" width="200px" height="300px" style="border: 1px solid red">
+    Your browser does not support the canvas element.
+</canvas>
+<canvas id="myCanvas2" width="200px" height="200px" style="border: 1px solid blue">
+    Your browser does not support the canvas element.
+</canvas>
+<canvas id="myCanvas3" width="300px" height="20px" style="border: 1px solid black"></canvas>
+<canvas id="myCanvas4" width="300px" height="300px" style="border: 1px solid"></canvas>
+<script type="text/javascript">
+    var c=document.getElementById("myCanvas");
+    var cxt=c.getContext("2d");
+    cxt.moveTo(10,10);
+    cxt.lineTo(150,50);
+    cxt.lineTo(20,160);
+    cxt.stroke();//显示图像
+</script>
+<script type="text/javascript">
+    var c=document.getElementById("myCanvas2");
+    var cxt=c.getContext("2d");
+    cxt.beginPath();
+    cxt.arc(50,50,20,0,Math.PI*2,true);
+    cxt.closePath();
+    cxt.fillStyle="black";
+    cxt.fill();//填充
+</script>
+<script type="text/javascript">
+    var  c=document.getElementById("myCanvas3");
+    var cxt=c.getContext("2d");
+    var grd=cxt.createLinearGradient(0,0,300,20);
+    grd.addColorStop(0,"red");
+    grd.addColorStop(0.5,"yellow");
+    grd.addColorStop(1,"blue");
+    cxt.fillStyle=grd;
+    cxt.fillRect(0,0,300,20);
+</script>
+<script type="text/javascript">
+    var c=document.getElementById("myCanvas4");
+    var cxt=c.getContext("2d");
+    var img=new Image();
+    img.src="520.jpg";
+    cxt.drawImage(img,0,0);
+</script>
+</body>
+</html>
