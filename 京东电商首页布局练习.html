@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        /*第一部分：logo部分*/
+        .header{
+            width: 100%;
+        }
+        .header div{
+            /*左浮动*/
+            float: left;
+            width: 33.3%;
+            height:75px;
+            /*行高*/
+            line-height: 50px;
+        }
+        /*a 标签*/
+        /*控制logo部分的a标签*/
+        .header a{
+            color: #000;
+        }
+        a{
+            font-size: 17px;
+            padding: 10px;//控制内边距
+            text-decoration: none;//去掉超链接的下划线
+        }
+        /*第二部分，导航栏部分*/
+            /*消除浮动*/
+            .clear{
+                clear: both;
+            }
+        .menu{
+            width: 100%;
+            background-color: black;
+            height: 50px;
+            padding-top: 1px;
+        }
+        .menu ul li{
+            /*去掉标记*/
+            list-style-type: none;
+            /*元素设为同一行*/
+            display: inline;
+        }
+        .menu a{
+            color: #FFF;
+        }
+        /*第三部分：轮番图*/
+        .img1{
+            width: 100%;
+        }
+        .img1 img{
+            width: 100%;
+        }
+        /*第四部分+第六部分*/
+        .hot{
+            height: 50px;
+            padding-top: 10px;
+        }
+        /*左边大图*/
+        .left{
+            float: left;
+            width: 16%;
+            height: 500px;
+        }
+        .right{
+            float: left;
+            width: 84%;
+            text-align: center;
+            height: 500px;
+        }
+        .middle{
+            float: left;
+            width: 50%;
+            height: 250px;
+        }
+        .item{
+            float: left;
+            width: 16.6%;
+            height: 250px;
+        }
+            /*第五加第七部分：广告图片+正品保证*/
+        .adv{
+            width: 100%;
+        }
+        /*第八部分：页脚部分*/
+        .foot{
+            width: 100%;
+        }
+        .foot p{
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+<div>
+    <!--第一部分，logo部分-->
+    <div class="header">
+        <div id="div1"><img src=""></div>
+        <div id="div2"><img src=""></div>
+        <div id="div3" align="center">
+            <a href="#">登录</a>
+            <a href="#">注册</a>
+            <a href="#">购物车</a>
+        </div>
+    </div>
+    <!--第二部分，导航栏部分-->
+    <!--消除浮动-->
+    <div class="clear"></div>
+    <div class="menu">
+        <ul>
+            <li><a href="#">首页</a></li>
+            <li><a href="#">手机数码</a></li>
+            <li><a href="#">电脑办公</a></li>
+            <li><a href="#">鞋靴箱包</a></li>
+            <li><a href="#">户外</a></li>
+        </ul>
+    </div>
+    <!--第三部分，轮番图部分-->
+    <div class="img1">
+        <img src=""/>
+    </div>
+    <!--第四部分,最新商品部分-->
+    <div>
+    <div class="hot">
+        <h3 style="display: inline">最新商品</h3>
+        <img src=""/>
+    </div>
+    <!--左边大图+右边商品-->
+    <!--左边大图-->
+    <div class="left">
+        <img src="" width="95%">
+    </div>
+    <!--右边商品-->
+    <div class="right">
+        <div class="middle">
+            <img src="" width="95%" height="240px"/>
+        </div>
+        <div class="item">
+            <img src=""/>
+            <p><a href="#">豆浆机</a></p>
+            <p><font color="red">$298</font></p>
+        </div>
+        <div class="item">
+            <img src=""/>
+            <p><a href="#">电脑</a></p>
+            <p><font color="red">$6999</font>/p>
+        </div>
+        <div class="item">
+            <img src=""/>
+            <p><a href="#">砂锅</a></p>
+            <p><font color="red">$398</font></p>
+        </div>
+        <div class="item">
+            <img src=""/>
+            <p><a href="#">面包机</a></p>
+            <p><font color="red">$498</font></p>
+        </div>
+        <div class="item">
+            <img src=""/>
+            <p><a href="#">饮水机</a></p>
+            <p><font color="red">$598</font></p>
+        </div>
+        <div class="item">
+            <img src=""/>
+            <p><a href="#">洗衣机</a></p>
+            <p><font color="red">$1998</font></p>
+        </div>
+        <div class="item">
+            <img src=""/>
+            <p><a href="#">扫地机器人</a></p>
+            <p><font color="red">$998</font></p>
+        </div>
+        <div class="item">
+            <img src=""/>
+            <p><a href="#">压力锅</a></p>
+            <p><font color="red">$598</font></p>
+        </div>
+        <div class="item">
+            <img src=""/>
+            <p><a href="#">微波炉</a></p>
+            <p><font color="red">$398</font></p>
+        </div>
+    </div>
+</div>
+    <!--第五部分，广告部分-->
+    <div class="adv">
+        <img src=""/>
+    </div>
+    <!--第六部分，热门商品部分-->
+    <div>
+        <div class="hot">
+            <h3 style="display: inline">热门商品</h3>
+            <img src=""/>
+        </div>
+        <!--左边大图+右边商品-->
+        <!--左边商品-->
+        <div class="left">
+            <img src="" width="95%">
+        </div>
+        <!--右边商品-->
+        <div class="right">
+            <div class="middle">
+                <img src="" width="95%" height="240px">
+            </div>
+            <div class="item">
+                <img src="img/c_0005.jpg"/>
+                <p><a href="#">小米</a></p>
+                <p><font color="red">$1998</font></p>
+            </div>
+            <div class="item">
+                <img src="img/c_0006.jpg"/>
+                <p><a href="#">vivo</a></p>
+                <p><font color="red">$1998</font></p>
+            </div>
+            <div class="item">
+                <img src="img/c_0007.jpg"/>
+                <p><a href="#">oppo</a></p>
+                <p><font color="red">$1998</font></p>
+            </div>
+            <div class="item">
+                <img src="img/c_0005.jpg"/>
+                <p><a href="#">华为</a></p>
+                <p><font color="red">$1998</font></p>
+            </div>
+            <div class="item">
+                <img src="img/c_0006.jpg"/>
+                <p><a href="#">苹果</a></p>
+                <p><font color="red">$1998</font></p>
+            </div>
+            <div class="item">
+                <img src="img/c_0007.jpg"/>
+                <p><a href="#">魅族</a></p>
+                <p><font color="red">$1998</font></p>
+            </div>
+            <div class="item">
+                <img src="img/c_0005.jpg"/>
+                <p><a href="#">三星</a></p>
+                <p><font color="red">$1998</font></p>
+            </div>
+            <div class="item">
+                <img src="img/c_0006.jpg"/>
+                <p><a href="#">乐视</a></p>
+                <p><font color="red">$1998</font></p>
+            </div>
+            <div class="item">
+                <img src="img/c_0007.jpg"/>
+                <p><a href="#">诺基亚</a></p>
+                <p><font color="red">$1998</font></p>
+            </div>
+        </div>
+    </div>
+    <!--第七部分，正品保证-->
+    <div class="adv">
+        <img src="" width="100%"/>
+    </div>
+    <!--第八部分，页脚部分-->
+    <div class="foot">
+        <p>
+            <a href="#">关于我们</a>
+            <a href="#">联系我们</a>
+            <a href="#">投诉建议</a>
+        </p>
+        <p>
+            CopyRight 2018-2020 XXX商城 &copy;
+        </p>
+    </div>
+</div>
+</body>
+</html>
