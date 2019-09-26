@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+          table,th,td{
+              border: 1px solid black;
+              text-align: center;
+          }
+        table{
+            width: 500px;
+            border-collapse: collapse;
+        }
+          #customers th
+          {
+              font-size:1.1em;
+              text-align:left;
+              padding-top:5px;
+              padding-bottom:4px;
+              background-color:#A7C942;
+              color:#ffffff;
+          }
+
+          #customers tr.alt td
+          {
+              color:#000000;
+              background-color:#EAF2D3;
+          }
+
+
+    </style>
+</head>
+<body>
+<table id="customers">
+    <tr >
+        <th>name</th>
+        <th>sex</th>
+        <th>tel</th>
+        <th>dept</th>
+    </tr>
+    <tr class="alt">
+    <td>tom</td>
+    <td>boy</td>
+    <td>18598875664</td>
+    <td>cs</td>
+    </tr>
+    <tr>
+        <td>jack</td>
+        <td>boy</td>
+        <td>15678945487</td>
+        <td>js</td>
+    </tr>
+    <tr class="alt">
+        <td>rose</td>
+        <td>girl</td>
+        <td>15856321654</td>
+        <td>cs</td>
+    </tr>
+</table>
+</body>
+</html>
