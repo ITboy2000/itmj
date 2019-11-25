@@ -1,0 +1,26 @@
+import java.util.Arrays;
+@SuppressWarnings("unused")
+public class BinarySearch2 {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		int[] array=new int[] {1,2,4,5,6,7,9};
+		System.out.println(binarySearch(array,4,0,array.length-1));
+	}
+	public static int binarySearch(int []a,int key,int left,int right) {
+		if(left>right) {
+			return -1;
+		}
+		int mid=(left+right)/2;
+		if(a[mid]==key) {
+			return mid;
+		}
+		if(a[mid]>key) {
+			return binarySearch(a,key,left++,right);
+		}else {
+			return binarySearch(a,key,left,right--);
+
+		}
+		
+	}
+}
