@@ -1,0 +1,310 @@
+1.数据存储两种方式：外设（磁盘）和内存
+
+2.RDBMS-relation databa mangement system：关系型数据库
+3.为什么要学习数据库？
+a.面试要考
+b.便于查询
+c.便于管理
+d.安全性（权限控制）
+ 
+4.数据库分类
+a.关系型数据库：由表组成，表有属性（attribute），是由列（column），字段（field），
+b.菲关系型数据库
+
+5.安装数据库
+'00
+.
+
+6.
+Microsoft Windows [版本 10.0.15063]
+(c) 2017 Microsoft Corporation。保留所有权利。
+
+C:\Users\Administrator>mysql -u root -p
+Enter password:
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 7
+Server version: 5.7.27 MySQL Community Server (GPL)
+
+Copyright (c) 2000, 2019, Oracle and/or its affiliates. All rights reserved.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> show database
+    -> show databases;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'database
+show databases' at line 1
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| class_13_db        |
+| mysql              |
+| performance_schema |
+| sys                |
++--------------------+
+5 rows in set (0.02 sec)
+
+mysql> create database class-13
+    -> create database class-13-db2
+    -> show databases;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '-13
+create database class-13-db2
+show databases' at line 1
+mysql>
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| class_13_db        |
+| mysql              |
+| performance_schema |
+| sys                |
++--------------------+
+5 rows in set (0.00 sec)
+
+mysql> use class-13-db
+ERROR 1049 (42000): Unknown database 'class-13-db'
+mysql> create database class-13-db2;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '-13-db2' at line 1
+mysql> create database class-13-db2;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '-13-db2' at line 1
+mysql>
+mysql>
+mysql>
+mysql> create database class-13-db2
+    -> show databases;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '-13-db2
+show databases' at line 1
+mysql>
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| class_13_db        |
+| mysql              |
+| performance_schema |
+| sys                |
++--------------------+
+5 rows in set (0.00 sec)
+
+mysql> create database class-13-db2;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '-13-db2' at line 1
+mysql> create database  [] class-13-db2;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '[] class-13-db2' at line 1
+mysql> create database  [] class-13-db2;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '[] class-13-db2' at line 1
+mysql> create database  [] class-13-db2;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '[] class-13-db2' at line 1
+mysql> create database  [if not exists] class-13-db2;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '[if not exists] class-13-db2' at line 1
+mysql> create database[] class-13-b2;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '[] class-13-b2' at line 1
+mysql> create database if not exists class-13-db2;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '-13-db2' at line 1
+mysql> create database if not exists class_13_db2;
+Query OK, 1 row affected (0.01 sec)
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| class_13_db        |
+| class_13_db2       |
+| mysql              |
+| performance_schema |
+| sys                |
++--------------------+
+6 rows in set (0.00 sec)
+
+mysql> use class_1
+ERROR 1049 (42000): Unknown database 'class_1'
+mysql> use class_13_db2;
+Database changed
+mysql> drop database if exists class_13_db2;
+Query OK, 0 rows affected (0.06 sec)
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| class_13_db        |
+| mysql              |
+| performance_schema |
+| sys                |
++--------------------+
+5 rows in set (0.00 sec)
+
+mysql> drop database if exists class_13_db;
+Query OK, 1 row affected (0.04 sec)
+
+mysql> show databses;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'databses' at line 1
+mysql> show database;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'database' at line 1
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| mysql              |
+| performance_schema |
+| sys                |
++--------------------+
+4 rows in set (0.00 sec)
+
+mysql>
+mysql> create database if not exists class_13_db1;
+Query OK, 1 row affected (0.00 sec)
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| class_13_db1       |
+| mysql              |
+| performance_schema |
+| sys                |
++--------------------+
+5 rows in set (0.00 sec)
+
+mysql> use class_13_db1;
+Database changed
+mysql> create table student1();
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ')' at line 1
+mysql> create table student1(  );
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ')' at line 1
+mysql> create table student1(;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+mysql> create table student1(
+    -> name varchar(20) comment '姓名',
+    -> sex varchar(4) comment '性别',
+    -> );
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ')' at line 4
+mysql> create table student1(
+    -> name varchar(20) comment '姓名',
+    -> sex varchar(4) comment '性别'
+    -> );
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> desc student1;
++-------+-------------+------+-----+---------+-------+
+| Field | Type        | Null | Key | Default | Extra |
++-------+-------------+------+-----+---------+-------+
+| name  | varchar(20) | YES  |     | NULL    |       |
+| sex   | varchar(4)  | YES  |     | NULL    |       |
++-------+-------------+------+-----+---------+-------+
+2 rows in set (0.01 sec)
+
+mysql> show tables;
++------------------------+
+| Tables_in_class_13_db1 |
++------------------------+
+| student1               |
++------------------------+
+1 row in set (0.00 sec)
+
+mysql> drop table if exists student1;
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> show tables;
+Empty set (0.00 sec)
+
+mysql> create table student(
+    -> name varchar(20),
+    -> sex varchar(4),
+    -> qq_mail varchar(20)
+    -> );
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> show tables;
++------------------------+
+| Tables_in_class_13_db1 |
++------------------------+
+| student                |
++------------------------+
+1 row in set (0.00 sec)
+
+mysql> insert into student values('jack','boy','1501228681');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> show tables;
++------------------------+
+| Tables_in_class_13_db1 |
++------------------------+
+| student                |
++------------------------+
+1 row in set (0.00 sec)
+
+mysql> desc student;
++---------+-------------+------+-----+---------+-------+
+| Field   | Type        | Null | Key | Default | Extra |
++---------+-------------+------+-----+---------+-------+
+| name    | varchar(20) | YES  |     | NULL    |       |
+| sex     | varchar(4)  | YES  |     | NULL    |       |
+| qq_mail | varchar(20) | YES  |     | NULL    |       |
++---------+-------------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+
+mysql> insert into student values('alice','gril','1501228681');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select * from student;
++-------+------+------------+
+| name  | sex  | qq_mail    |
++-------+------+------------+
+| jack  | boy  | 1501228681 |
+| alice | gril | 1501228681 |
++-------+------+------------+
+2 rows in set (0.00 sec)
+
+mysql> insert into student values('majian','boy','1501228681');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select * from student;
++--------+------+------------+
+| name   | sex  | qq_mail    |
++--------+------+------------+
+| jack   | boy  | 1501228681 |
+| alice  | gril | 1501228681 |
+| majian | boy  | 1501228681 |
++--------+------+------------+
+3 rows in set (0.00 sec)
+
+mysql> insert into student values('majian','boy');
+ERROR 1136 (21S01): Column count doesn't match value count at row 1
+mysql> insert into student ('gril','1531545454');
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''gril','1531545454')' at line 1
+mysql> insert into student (sex,qq_mail) values
+    -> ('gril','152021548545');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select * from student;
++--------+------+--------------+
+| name   | sex  | qq_mail      |
++--------+------+--------------+
+| jack   | boy  | 1501228681   |
+| alice  | gril | 1501228681   |
+| majian | boy  | 1501228681   |
+| NULL   | gril | 152021548545 |
++--------+------+--------------+
+4 rows in set (0.00 sec)
+
+mysql> select @i :=1;
++--------+
+| @i :=1 |
++--------+
+|      1 |
++--------+
+1 row in set (0.00 sec)
+
+mysql>
