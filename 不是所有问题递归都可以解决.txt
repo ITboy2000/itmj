@@ -1,0 +1,19 @@
+求斐波那契数列时，n太大的话就会占用很多内存，时间太长，此时该用循环
+class Solution {
+    public int climbStairs(int n) {
+        if(n==1){
+            return 1;
+        }
+        if(n==2){
+            return 2;
+        }
+        int i1=1;
+        int i2=2;
+        for(int i=3;i<=n;i++){
+            int temp=i1+i2;
+            i1=i2;
+            i2=temp;
+        }
+        return i2;
+    }
+}
