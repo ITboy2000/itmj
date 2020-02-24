@@ -1,0 +1,38 @@
+package tree;
+//数组存储二叉树
+public class ArrayBinaryTreeDemo {
+    public static void main(String[] args) {
+        int[] array={1,2,3,4,5,6,7};
+        ArrayBinaryTree arrayBinaryTree=new ArrayBinaryTree(array);
+        arrayBinaryTree.preOrder();
+    }
+}
+class ArrayBinaryTree{
+    private int[] array;
+    //将原始数传过来
+    public ArrayBinaryTree(int[] array) {
+        this.array = array;
+    }
+    //重载前序遍历方法
+    public void preOrder(){
+        preOrder(0);
+    }
+    //前序遍历方法
+    /*根->左->右*/
+    public void preOrder(int index){
+        //如果数组为空或者数组元素为0，那么无法遍历
+        if (array==null||array.length==0){
+            System.out.println("数组为空无法进行前序遍历");
+        }
+        //首先输出根节点
+        System.out.print(array[index]+" ");
+        //然后递归向左遍历
+        if (2*index+1<array.length){
+            preOrder(2*index+1);
+        }
+        //其次向右递归遍历
+        if (2*index+2<array.length){
+            preOrder(2*index+2);
+        }
+    }
+}
