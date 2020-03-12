@@ -1,0 +1,28 @@
+class Solution {
+    int index=0;
+    private TreeNode buildTree(int[] inorder ,int left,int right,int[] postorder){
+        if(index<0||left>=right){//index用来取根
+        return null;
+        }
+        //1.在中序遍历结果中找树的根节点
+            int rootIndex=left;
+        while(rootIndex<right){
+            if(inorder[rootIndex]==postorder[index]){
+                break;
+            }
+            rootIndex++;
+        }
+        TreeNode root=new TreeNode(postorder[index]);
+        index--;
+        //递归创建root的右子树
+        root.right=buildTree(inorder,rootIndex+1,right,postorder);
+         //递归创建root的左子树:[left,rootIndex)
+    
+        root.left=buildTree(inorder ,left,rootIndex ,postorder);
+        return root;
+    }
+    public TreeNode buildTree(int[] inorder, int[] postorder) {
+        index=postorder.length-1;
+        return buildTree(inorder,0,inorder.length,postorder);
+    }
+}
