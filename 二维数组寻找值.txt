@@ -1,0 +1,30 @@
+在一个二维数组中（每个一维数组的长度相同），每一行都按照从左到右递增的顺序排序，每一列都按照从上到下递增的顺序排序。请完成一个函数，输入这样的一个二维数组和一个整数，判断数组中是否含有该整数。
+public class Solution {
+    public boolean Find(int target, int [][] array) {
+        //完成这道题首先要知道如何获取二维数组的行列数
+        int hang=array.length-1;//行数
+        int lie=array[0].length-1;//列数
+        boolean flag=false;//设置标志，初始值为false
+        int r=hang;
+        int c=0;
+        //因为在一个二维数组中（每个一维数组的长度相同），
+        //每一行都按照从左到右递增的顺序排序，每一列都按照从上到下递增的顺序排序。
+        //思路：
+        //从二维数组的左下角开始找，如果找到的值小于target，就在当前行的下一列寻找
+        //如果找到的值大于target，就在当前列的上一列寻找
+        //依次循环直到找到位置
+        while(r>0&&c<lie){
+            if(target>array[r][c]){
+                c++;
+            }
+            else if(target<array[r][c]){
+                r--;
+            }
+            if(target==array[r][c]){
+                flag=true;
+                break;
+            }
+        }
+        return flag;
+    }
+}
