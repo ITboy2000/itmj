@@ -1,0 +1,24 @@
+import java.util.Stack;
+
+public class Solution {
+    Stack<Integer> stack1 = new Stack<Integer>();
+    Stack<Integer> stack2 = new Stack<Integer>();
+    //队列：先进先出；栈：先进后出
+    public void push(int node) {
+        //用stack1作为模拟队列的进入,数据每次都入stack1
+        stack1.push(node);
+    }
+    
+    public int pop() {
+        //将satck2作为模拟队列的输出
+        //如果stack2为空的话，将stack1中的数据搬移到stack2中，
+        //这样就使在stack1底部的元素到了stack2的顶部(stack1中底部的元素是先进来的)
+        if(stack2.isEmpty()){
+            while(!stack1.isEmpty()){
+                stack2.push(stack1.pop());
+            }
+        }
+        //输出stack2顶部的元素就是先进先出的效果
+        return stack2.pop();
+    }
+}
