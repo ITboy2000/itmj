@@ -1,0 +1,158 @@
+package queue;
+
+import java.util.Arrays;
+class Less{
+    //0:left==right
+    //>0:left>right
+    //<0:left<right
+    int compare(int left,int right){
+        return left-right;
+    }
+}
+//实现小堆
+public class MyPriorityQueue {
+    private int[] array;//存放数据
+    private int size = 0;//优先级队列中有效元素的个数
+
+    public MyPriorityQueue() {
+        //默认的构造，将其底层默认容量设置为11
+        array = new int[11];
+        size = 0;
+    }
+
+    public MyPriorityQueue(int initCapacity) {
+        if (initCapacity < 1) {
+            //标准库：抛出非法参数的异常
+            //这里设置为11
+            initCapacity = 11;
+        }
+        array = new int[initCapacity];
+        size = 0;
+    }
+
+    //标准库中没有该接口--标准库中可以采用集合来构造优先级队列
+    public MyPriorityQueue(int[] arr) {
+        array = new int[arr.length];
+        for (int i = 0; i < arr.length; i++) {
+            array[i] = arr[i];
+        }
+        size = array.length;
+        //将array中的元素进行调整，满足堆的特性
+        //找到倒数第一个非叶子节点
+
+        int lastLeaf = (array.length - 2) >> 1;
+        for (int root = lastLeaf; root >= 0; root--) {
+            shiftDown(root);
+        }
+    }
+
+    //获取堆顶元素
+    public int peek() {
+        //标准库中，如果优先级队列是空，无法返回堆顶元素，返回null
+        return array[0];
+    }
+
+    //获取优先级队列有效元素个数
+    private int size() {
+        return size;
+    }
+
+    //清空
+    private void clear() {
+        size = 0;
+    }
+
+    //插入
+    private void offer(int x) {
+        //插入元素之前需要判断是否需要扩容
+        grow();
+        array[size++] = x;
+        shiftUp(size - 1);//注意：此处一定不能使用size--
+    }
+
+    //删除最小元素,堆顶元素
+    int poll() {
+        int ret = array[0];
+        swap(0, size - 1);
+        size--;
+        shiftDown(0);
+        return ret;
+    }
+
+    //判空
+    boolean isEmpty() {
+        return size == 0;
+    }
+
+    //只是模拟优先级队列扩容的一部分
+    private void grow() {
+        if (size >= array.length) {
+            int oldCapacity = array.length;
+            //扩容方式：原容量<64的：原容量的二倍加二，否则：原容量的1.5倍进行扩容
+            int newCapacity = oldCapacity + ((oldCapacity < 64) ? (oldCapacity + 2) : (oldCapacity >> 1));
+            array = Arrays.copyOf(array, newCapacity);//拷贝
+        }
+    }
+
+    //调整的方法
+    //调整以parent为根的二叉树，调整之前一定要保证左右子树已经满足小堆的性质
+    //不满足就交换,交换后可能导致子树不满足堆的性质，继续调整子树
+    public void shiftDown(int parent) {
+        //如果要检测parent是否满足小堆的性质,只需要和孩子比较
+        int child = parent * 2 + 1;//child标记较小的孩子,parent可能有左没有右孩子
+        while (child < size) {
+            //找parent左右孩子中较小的孩子
+            if (child + 1 < size && array[child + 1] < array[child]) {//保证右孩子存在,while循环条件已经保证左孩子存在
+                child += 1;
+            }
+            //检测parent与较小孩子的大小
+            if (array[child] < array[parent]) {
+                //不满足小堆性质
+                swap(parent, child);
+                //交换后可能破坏子树结构
+                parent = child;
+                child = parent * 2 + 1;
+            } else {
+                //满足
+                return;
+            }
+        }
+    }
+
+    //向上调整
+    public void shiftUp(int child) {
+        int parent = (child - 1) >> 1;
+        while (child != 0) {//或者parent
+            if (array[child] < array[parent]) {
+                swap(parent, child);
+                child = parent;
+                parent = (child - 1) >> 1;
+            } else {
+                return;
+            }
+        }
+    }
+
+    //交换
+    private void swap(int parent, int child) {
+        int temp = array[parent];
+        array[parent] = array[child];
+        array[child] = temp;
+    }
+
+    public static void main(String[] args) {
+        int[] array = {5, 3, 7, 1, 4, 6, 8, 0, 2};
+        MyPriorityQueue mp = new MyPriorityQueue(array);
+        mp.offer(9);
+        System.out.println(mp.peek());
+        mp.offer(-1);
+        System.out.println(mp.peek());
+        System.out.println(mp.size());
+        if (mp.isEmpty()){
+            System.out.println("空");
+        }else {
+            System.out.println("非空");
+        }
+
+    }
+}
