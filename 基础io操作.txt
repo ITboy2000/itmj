@@ -1,0 +1,87 @@
+package com.sxt.io;
+
+import java.io.*;
+
+/*
+  文件字节输入流 加入缓存流
+  一段一段读取文件
+* 第一个IO程序：理解操作步骤
+* 1.创建源
+* 2.选择流
+* 3.操作
+* 4.释放资源
+* */
+public class BufferedTest01 {
+
+    public static void main(String[] args) {
+        //1.创建源
+        File src = new File("D:/IO学习/IO_Study01/abc.txt");
+        InputStream is = null;
+        //2.选择流
+        try {
+            is = new BufferedInputStream(new FileInputStream(src));
+            //3.操作(分段读取)
+            byte[] car = new byte[1024];//缓冲容器,每三个一组
+            int length;//接收长度
+            while ((length = is.read(car)) != -1) {
+                //字节数组-->字符串（解码）
+                String str = new String(car, 0, length);
+                System.out.println(str);
+            }
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            //4.释放资源
+            if (is != null) {
+                try {
+                    is.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
+
+    public static void test1() {
+        //1.创建源
+        File src = new File("D:/IO学习/IO_Study01/abc.txt");
+        InputStream is = null;
+        BufferedInputStream bis = null;
+        //2.选择流
+        try {
+            is = new FileInputStream(src);
+            bis = new BufferedInputStream(is);
+            //3.操作(分段读取)
+            byte[] car = new byte[1024];//缓冲容器,每三个一组
+            int length;//接收长度
+            while ((length = is.read(car)) != -1) {
+                //字节数组-->字符串（解码）
+                String str = new String(car, 0, length);
+                System.out.println(str);
+            }
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            //4.释放资源
+            if (bis != null) {
+                try {
+                    bis.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+            if (is != null) {
+                try {
+                    is.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+
+    }
+}
