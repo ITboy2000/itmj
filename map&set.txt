@@ -1,0 +1,133 @@
+package MapAndSet;
+
+import com.sun.jdi.event.StepEvent;
+
+import java.util.*;
+
+public class MapTest {
+    public static void mapTest(){
+        //TreeMap:有序
+        Map<String,String> m1=new TreeMap<>();
+        m1.put("peach","桃子");
+        m1.put("orange","橘子");
+        m1.put("apple","苹果");
+        System.out.println(m1.size());
+        //如果插入的键值对的key存在，value不同那么就会value覆盖
+        m1.put("orange","橙子");
+        System.out.println(m1);
+        System.out.println(m1.put("caomei","草莓"));
+        //key值不能为空，否则造成空指针异常:如果是空无法进行key的比较
+//        m1.put(null,"香蕉");
+        //value值可以为空
+        m1.put("banana","香蕉");
+        System.out.println(m1.get("apple"));
+        System.out.println(m1.getOrDefault("apple","苹果手机"));
+        System.out.println(m1.getOrDefault("watermelon","西瓜"));
+        System.out.println(m1);
+        //删除键值对：
+        //如果key存在，那么就删除键值对，返回的是value值，如果key不存在那么就返回null
+        System.out.println(m1.remove("bananan"));
+        if (m1.containsKey("banana")){
+            System.out.println("存在");
+        }else {
+            System.out.println("不存在");
+        }
+        System.out.println(m1.remove("banana"));
+        //找key时间复杂度：O(logN)，挨个遍历
+        if (m1.containsKey("banana")){
+            System.out.println("存在");
+        }else {
+            System.out.println("不存在");
+        }
+        //打印所有key
+        //keySet()将所有key放在set中返回
+        for (String s:m1.keySet()){
+            System.out.println(s+" ");
+        }
+        //打印所有value
+        for (String s:m1.values()) {
+            System.out.println(s+" ");
+        }
+        //打印所有键值对
+        for (Map.Entry<String,String> e:m1.entrySet()) {
+            System.out.println(e+" ");
+        }
+    }
+    public static void hashMap(){
+        //HashMap:无序
+        Map<String,String> m1=new HashMap<>();
+        m1.put("peach","桃子");
+        m1.put("orange","橘子");
+        m1.put("apple","苹果");
+        System.out.println(m1.size());
+        //如果插入的键值对的key存在，value不同那么就会value覆盖
+        m1.put("orange","橙子");
+        System.out.println(m1);
+        System.out.println(m1.put("caomei","草莓"));
+        //key值不能为空，否则造成空指针异常
+//        m1.put(null,"香蕉");
+        //value值可以为空
+        m1.put("banana","香蕉");
+        System.out.println(m1.get("apple"));
+        System.out.println(m1.getOrDefault("apple","苹果手机"));
+        System.out.println(m1.getOrDefault("watermelon","西瓜"));
+        System.out.println(m1);
+        System.out.println(m1.remove("bananan"));
+        if (m1.containsKey("banana")){
+            System.out.println("存在");
+        }else {
+            System.out.println("不存在");
+        }
+        System.out.println(m1.remove("banana"));
+        //找key时间复杂度：O(logN)，挨个遍历
+        if (m1.containsKey("banana")){
+            System.out.println("存在");
+        }else {
+            System.out.println("不存在");
+        }
+        //打印所有key
+        //keySet()将所有key放在set中返回
+        for (String s:m1.keySet()){
+            System.out.println(s+" ");
+        }
+        //打印所有value
+        for (String s:m1.values()) {
+            System.out.println(s+" ");
+        }
+        //打印所有键值对
+        for (Map.Entry<String,String> e:m1.entrySet()) {
+            System.out.println(e+" ");
+        }
+    }
+    public static void treeSet(){
+        Set<String> s=new TreeSet<>();
+        System.out.println(s.add("orange"));
+        System.out.println(s.add("apple"));
+        System.out.println(s.add("banana"));
+        System.out.println(s.size());
+        System.out.println(s.add("apple"));
+        if (s.contains("apple")){
+            System.out.println("有");
+        }else {
+            System.out.println("无");
+        }
+        if (s.contains("watermelon")){
+            System.out.println("有");
+        }else {
+            System.out.println("无");
+        }
+        //遍历
+        Iterator<String> iterator=s.iterator();
+        while (iterator.hasNext()){
+            System.out.println(iterator.next()+" ");
+        }
+        System.out.println(s.remove("apple"));
+        System.out.println(s.remove("watermelon"));
+        s.clear();
+    }
+    public static void main(String[] args) {
+//        mapTest();
+//        hashMap();
+        treeSet();
+    }
+}
