@@ -1,0 +1,40 @@
+import java.util.*;
+public class Main1 {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        while (sc.hasNext()){
+            int N=sc.nextInt();//学生数
+            int M=sc.nextInt();//操作数
+            int[] grades=new int[N];
+            //循环输入成绩
+            for (int i = 0; i <grades.length ; i++) {
+                grades[i]=sc.nextInt();
+            }
+            for (int i = 0; i <M ; i++) {
+                String C=sc.next();
+                int A=sc.nextInt();
+                int B=sc.nextInt();
+                if (C.equals("Q")){
+                    if (A>B){
+                        int temp=A;
+                        A=B;
+                        B=temp;
+                    }
+                    int res= search(grades,A,B);
+                    System.out.println(res);
+                }else if (C.equals("U")){
+                    grades[A-1]=B;
+                }
+            }
+        }
+    }
+    public static int search(int[] grades,int A,int B){
+        int max=grades[A-1];
+        for (int i = A; i <=B-1 ; i++) {
+            if (grades[i]>max){
+                max=grades[i];
+            }
+        }
+        return max;
+    }
+}
