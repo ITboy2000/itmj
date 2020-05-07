@@ -1,0 +1,187 @@
+package MapAndSet;
+
+//哈希桶（解决哈希冲突的一种方式）---数组+链表进行实现
+//数组：帮助用户快速定为待插入元素将要插到哪个链表中
+//数组中存储的元素实际为节点的引用
+//假设哈希桶Key唯一
+public class HashBucket {
+    public static class Node {
+        int Key;
+        int Value;
+        Node next;
+
+        public Node(int key, int value) {
+            this.Key = key;
+            this.Value = value;
+            next = null;
+        }
+    }
+
+    //哈希桶中的数据成员
+    Node[] table;
+    int capacity;//桶的个数
+    int size;//有效元素的个数
+    double loadFact=0.75;//负载因子达到0.75就要进行扩容
+
+
+    public HashBucket(int Cap) {
+        //保证哈希桶的初始容量为10
+        capacity = Cap;
+        if (Cap < 10) {
+            capacity = 10;
+        }
+        table = new Node[capacity];
+        size = 0;
+    }
+
+    public int put(int Key, int Value) {
+        resize();
+        //1.通过哈希函数计算待插入元素Key的桶号
+        int bucketNo = hashFunc(Key);
+        //2.在bucketNo中检测是否存在待插入元素
+        //检测方式：遍历一遍
+        Node cur = table[bucketNo];
+        while (cur != null) {
+            if (cur.Key == Key) {
+                int oldValue = cur.Value;
+                cur.Value = Value;
+                return oldValue;
+            }
+            cur = cur.next;
+        }
+        //3.Key不存在，将Key-Value插入到哈希桶中
+        cur = new Node(Key, Value);
+        cur.next = table[bucketNo];
+        table[bucketNo] = cur;
+        size++;
+        return Value;
+    }
+
+    //使用除留取余法计算
+    private int hashFunc(int Key) {
+        return Key % capacity;
+    }
+
+    //将哈希桶中为Key的键值对删除
+    public boolean remove(int Key) {
+        //1.通过哈希函数计算桶号
+        int bucket = hashFunc(Key);
+        //2.在哈希桶中找到对应的节点
+        //找到之后删除该节点
+        Node cur = table[bucket];
+        Node prev = null;
+        while (cur != null) {
+            if (cur.Key == Key) {
+                //找到就删除
+                //判断待删除节点的位置（分情况删除）
+                if (prev == null) {//判断是否为头节点
+                    table[bucket] = cur.next;
+                } else {//不是头结点
+                    prev.next = cur.next;
+                }
+                size--;
+                return true;
+            } else {
+                cur = cur.next;
+            }
+        }
+        return false;
+    }
+
+    //O(1)
+    public boolean containsKey(int Key) {
+        //1.计算Key所在的桶号
+        int bucket = hashFunc(Key);
+        //在table[bucket]中寻找Key
+        Node cur = table[bucket];
+        while (cur != null) {
+            if (cur.Key == Key) {
+                return true;
+            }
+            cur = cur.next;
+        }
+        return false;
+    }
+
+    //O(n)
+    public boolean containsValue(int Value) {
+        /*哈希桶是根据Key来通过哈希函数计算出哈希地址的
+         * 找Value不能通过Value计算出Value在哪个桶中
+         *找Value时必须遍历全部桶
+         *  */
+        for (int bucket = 0; bucket < capacity; bucket++) {
+            Node cur = table[bucket];
+            while (cur != null) {
+                if (cur.Value == Value) {
+                    return true;
+                }
+                cur = cur.next;
+            }
+        }
+        return false;
+    }
+
+    public int size() {
+        return size;
+    }
+
+    public boolean isEmpty() {
+        return size == 0;
+    }
+    private void resize(){
+        //负载因子超过0.75时扩容
+        if (size*10/capacity>loadFact*10){
+            int newCap=capacity*2;
+            Node[] newTable=new Node[newCap];
+            //将table中的元素搬移到新的桶中
+            for (int i = 0; i <capacity ; i++) {
+                Node cur=table[i];
+                //将table中i号桶所对应的所有节点插入到newTable中
+                while (cur!=null){
+                    table[i]=cur.next;
+                    //将cur节点插入到newTable中
+                    //1.计算cur在newTable中的桶号
+                    int bucketNo=cur.Key%newCap;
+                    //2.将cur插入到newTable中
+                    cur.next=newTable[bucketNo];
+                    newTable[bucketNo]=cur;
+                    //3.取table中i号桶的下一个节点
+                    cur=table[i];
+                }
+            }
+            table=newTable;
+            capacity=newCap;
+        }
+    }
+    public void printHashBucket(){
+        for (int bucketNo = 0; bucketNo <capacity ; bucketNo++) {
+            System.out.printf("table[%d]--->",bucketNo);
+            Node cur=table[bucketNo];
+            while (cur!=null){
+                System.out.print("["+cur.Key+","+cur.Value+"]--->");
+                cur=cur.next;
+            }
+            System.out.print("null");
+            System.out.println();
+        }
+    }
+    public static void main(String[] args) {
+        HashBucket hb=new HashBucket(5);
+        hb.put(1,1);
+        hb.put(2,2);
+        hb.put(33,33);
+        hb.put(44,44);
+        hb.put(55,55);
+        hb.put(6,6);
+        hb.put(7,7);
+        hb.put(9,9);
+        System.out.println(hb.size);
+        hb.printHashBucket();
+        hb.put(17,17);
+        hb.put(11,11);
+        hb.put(17,170);
+        hb.put(51,51);
+        System.out.println(hb.size);
+        hb.printHashBucket();
+    }
+}
