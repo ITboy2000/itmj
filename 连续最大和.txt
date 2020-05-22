@@ -1,0 +1,34 @@
+import java.util.*;
+public class Main{
+    public static void main(String[] args){
+        Scanner sc=new Scanner(System.in);
+        Stack<Integer> s=new Stack<>();
+        while(sc.hasNextInt()){
+            int N=sc.nextInt();
+            int[] arr=new int[N];
+            for(int i=0;i<arr.length;i++){
+                arr[i]=sc.nextInt();
+            }
+            int temp=0;
+            for(int i=0;i<arr.length;i++){
+                if(arr[i]>0){
+                    temp+=arr[i];
+                }else{
+                    if (temp+arr[i]>0){
+                        s.push(temp);
+                        temp+=arr[i];
+                    }else {
+                        temp=0;
+                    }
+                }
+            }
+            s.push(temp);
+            int[] c=new int[s.size()];
+            for(int j=0;j<c.length;j++){
+                c[j]=s.pop();
+            }
+            Arrays.sort(c);
+            System.out.println(c[c.length-1]);
+        }
+    }
+}
