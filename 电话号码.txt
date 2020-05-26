@@ -1,0 +1,77 @@
+import java.util.*;
+public class Main{
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        Map<String,Integer> map=new HashMap<>();
+        Set<String> set=new HashSet<>();
+        PriorityQueue<String> pq=new PriorityQueue<>();
+        map.put("1",1);
+        map.put("A",2);
+        map.put("B",2);
+        map.put("C",2);
+        map.put("D",3);
+        map.put("E",3);
+        map.put("F",3);
+        map.put("G",4);
+        map.put("H",4);
+        map.put("I",4);
+        map.put("J",5);
+        map.put("K",5);
+        map.put("L",5);
+        map.put("M",6);
+        map.put("N",6);
+        map.put("O",6);
+        map.put("P",7);
+        map.put("Q",7);
+        map.put("R",7);
+        map.put("S",7);
+        map.put("T",8);
+        map.put("U",8);
+        map.put("V",8);
+        map.put("W",9);
+        map.put("X",9);
+        map.put("Y",9);
+        map.put("Z",9);
+        map.put("0",0);
+        while (sc.hasNextInt()){
+            int n=sc.nextInt();
+            String[] str=new String[n];
+            for (int i = 0; i <n ; i++) {
+                str[i]=sc.next();
+            }
+            for (int i = 0; i <n ; i++) {
+                str[i]=str[i].replace("-","");
+            }
+            for (int i = 0; i <n ; i++) {
+                str[i]=change(str[i],map);
+            }
+            for (int i = 0; i <n ; i++) {
+                if (!pq.contains(str[i])){
+                    pq.add(str[i]);
+                }
+            }
+            while (!pq.isEmpty()){
+                System.out.println(pq.poll());
+            }
+            System.out.println();
+        }
+    }
+    public static String change(String str,Map<String,Integer> map){
+        String[] temp=str.split("");
+        for (int i = 0; i <temp.length ; i++) {
+            if (map.containsKey(temp[i])){
+                temp[i]=map.get(temp[i]).toString();
+            }
+        }
+        StringBuilder sb=new StringBuilder();
+        for (int i = 0; i <temp.length ; i++) {
+            if (i==2){
+                sb.append(temp[i]);
+                sb.append("-");
+            }else {
+            sb.append(temp[i]);
+            }
+        }
+        return sb.toString();
+    }
+}
