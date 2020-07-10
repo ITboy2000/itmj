@@ -1,0 +1,36 @@
+class CQueue {
+
+    public CQueue() {
+
+    }
+    //队列：先进先出；栈：先进后出
+    //定义两个栈
+    Stack<Integer> s1=new Stack<>();//添加元素
+    Stack<Integer> s2=new Stack<>();//删除元素
+    public void appendTail(int value) {
+        s1.push(value);
+    }
+    
+    public int deleteHead() {
+        //删除前,如果s2不为空，那么直接删除栈s2的top元素
+        //如果为空，将s1中的元素全部搬移到s2中
+        if(!s2.isEmpty()){
+            return s2.pop();
+        }else{
+            while(!s1.isEmpty()){
+            s2.push(s1.pop());
+        }
+        }
+        if(s2.isEmpty()){
+            return -1;
+        }
+        return s2.pop();
+    }
+}
+
+/**
+ * Your CQueue object will be instantiated and called as such:
+ * CQueue obj = new CQueue();
+ * obj.appendTail(value);
+ * int param_2 = obj.deleteHead();
+ */
