@@ -1,0 +1,33 @@
+class Solution {
+    public double myPow(double x, int n) {
+        if(n==0||x==1.00000){
+            return 1.00000;
+        }
+        if(n==1){
+            return x;
+        }
+        if(n==-1){
+            return 1/x;
+        }
+        if(n>0){
+            int n2=n%2147483647;
+            double res=x;
+            for(int i=1;i<n2;i++){
+                res*=x;
+            }
+            return res;
+        }
+        if(n==-2147483648&&x!=-1.00000){
+            return 0.00000;
+        }
+        if(n==-2147483648&&x==-1.00000){
+            return 1.00000;
+        }
+        double res2=x;
+        int n2=n%-2147483648;
+        for(int j=-1;j>n2;j--){
+            res2*=x;
+        } 
+        return 1/res2;
+    }
+}
